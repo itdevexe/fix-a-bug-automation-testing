@@ -1,24 +1,3 @@
-document.addEventListener("DOMContentLoaded", function () {
-    function scrollToPosition() {
-        let scrollPosition = window.innerWidth <= 768 ? 0 : 0; // 800px for mobile, 0 for desktop
-        window.scrollTo({ top: scrollPosition, behavior: "smooth" });
-        document.getElementById("email").focus(); 
-    }
-
-    const buttonIds = ["btn-1", "btn-2", "btn-3", "btn-4", "btn-5", "btn-6","btn-7", "btn-8"];
-
-    buttonIds.forEach(id => {
-        const button = document.getElementById(id);
-        if (button) {
-            button.addEventListener("click", scrollToPosition);
-        }
-    });
-});
-
-
-
-
-
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -232,9 +211,6 @@ function moveSlide(direction) {
 
 
 
-
-
-
 const galleryContainer = document.querySelector('.gallery-container');
 const gallery = document.querySelector('.gallery');
 const gallerySlides = Array.from(gallery.querySelectorAll('.a-div'));
@@ -290,6 +266,8 @@ function moveGalleryTo(index) {
 }
 
 updateDots();
+
+
 
 
 
@@ -680,3 +658,10 @@ document.addEventListener("DOMContentLoaded",()=>{
         })
     })
 })
+
+
+
+
+
+
+
