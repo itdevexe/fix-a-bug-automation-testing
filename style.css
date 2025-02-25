@@ -116,7 +116,7 @@ body {
 
 .container2 {
   width: 1140px;
-  padding: 40px 0px 40px 0px;
+  padding: 0px;
 }
 
 .container3 {
@@ -217,7 +217,7 @@ body {
   color: #4a4a68;
   font-size: 16px;
   margin-top: 10px;
-  margin-bottom: 36px;
+  margin-bottom: 80px;color-grey
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -230,7 +230,7 @@ body {
 
 .flex-row {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: row;
   gap: 16px;
 }
@@ -307,6 +307,7 @@ body {
   border: none;
   outline: none;
   color: white !important;
+  cursor: pointer;
   font-size: 16px;
   /* padding: 20px; */
 }
@@ -323,6 +324,7 @@ body {
   border: none;
   outline: none;
   color: white !important;
+  cursor: pointer;
   font-size: 14px;
 }
 .scheduler_div {
@@ -375,8 +377,7 @@ body {
 
 .form-flex-down {
   display: flex;
-  flex-direction: column;
-  gap: 15px;
+  gap: 16px;
 
 
 }
@@ -418,9 +419,17 @@ body {
 }
 
 
+.hero-div{
+  max-width: 100%;
+}
 
+.hero-form{
+  padding: 0px 0px 20px 0px;
+}
 
-
+.mobile-visible{
+  display: none;
+}
 
 
 
@@ -1804,6 +1813,17 @@ img {
 
 }
 
+.email-field{
+  color: #263238;
+  background-color: #f8f6fb;
+  border: 1px solid #785dfb;
+  border-radius: 5px;
+  width: 300px;
+  height: 50px;
+  margin-bottom: 0;
+  padding-left: 10px;
+}
+
 
 
 
@@ -2780,6 +2800,7 @@ body {
   .form-flex-down{
     display: flex;
     align-items: center;
+    flex-direction: column;
   }
   .form-01 {
     margin: 0px 25px;
@@ -2791,4 +2812,28 @@ body {
   .cus-slide-mobile img {
     width: 100px;
   }
+
+  .hero-form{
+    display: flex;
+  }
+
+  hero-div-mobile-visible{
+    display: block;
+    width: 100%;
+  }
+
+  hero-div{
+    display: none;
+    visibility: hidden;
+
+  }
+
+
+
+
+
+
+
+
+
 }
