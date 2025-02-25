@@ -423,6 +423,10 @@ body {
   max-width: 100%;
 }
 
+.hero-div-mobile-visible{
+  display: none;
+}
+
 .hero-form{
   padding: 0px 0px 20px 0px;
 }
@@ -2618,7 +2622,7 @@ body {
   }
   .zoom_slider{
     width: 100%;
-    height: 480px;
+    height: 520px;
   }
   .zoom_slider .mask{
     width: 100%;
@@ -2632,7 +2636,7 @@ body {
   .zoom_slider .mask .zoom_slide{
     min-width: 75%;
     width: 100%;
-    height: 100%;
+    height: 480px;
     background: white;
     box-shadow: 0 0 4px #afafaf;
     transform: translateX(0) scaleY(.9);
@@ -2815,16 +2819,17 @@ body {
 
   .hero-form{
     display: flex;
+    padding: 0px;
+    justify-content: center;
   }
 
-  hero-div-mobile-visible{
+  .hero-div-mobile-visible{
     display: block;
     width: 100%;
   }
 
-  hero-div{
+  .hero-div{
     display: none;
-    visibility: hidden;
 
   }
 
