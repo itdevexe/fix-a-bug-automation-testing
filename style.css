@@ -3016,6 +3016,13 @@ body {
   .hero-div-mobile-visible{
     display: block;
     width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-img{
+    width: 300px;
+    height: 300px;
   }
 
   .hero-div{
