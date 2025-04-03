@@ -3105,245 +3105,258 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-        $(document).ready(function () {
-            function checkEmail(emailField, errorTextId) {
-                var email = emailField.val().trim(); // Trim to avoid spaces
-                var reg = /^[\w-.]+@(?!gmail\.com$|gmail.co$|yahoo\.com$|hotmail\.com$|yahoo\.co\.in$|aol\.com$|abc\.com$|xyz\.com$|pqr\.com$|rediffmail\.com$|live\.com$|outlook\.com$|me\.com$|msn\.com$|ymail\.com$)[\w-]+(?:\.[\w-]+)*\.[a-z]{2,}$/i;
-
-                var errorText = $('#' + errorTextId); // Use jQuery for consistency
-
-                if (reg.test(email)) {
-                    errorText.hide(); // Hide error text
-                    return true;  // Email is valid
+        let gmail=false
+        $(document).ready(function() {
+        function checkEmail(emailField, errorTextId) {   
+            var email = emailField.val().trim(); // Trim to avoid spaces
+            var reg = /^[\w-.]+@(?!gmail\.com$|gmail.co$|yahoo\.com$|hotmail\.com$|yahoo\.co\.in$|aol\.com$|abc\.com$|xyz\.com$|pqr\.com$|rediffmail\.com$|live\.com$|outlook\.com$|me\.com$|msn\.com$|ymail\.com$)[\w-]+(?:\.[\w-]+)*\.[a-z]{2,}$/i;
+    
+            var errorText = $('#' + errorTextId); // Use jQuery for consistency
+    
+            if (reg.test(email)) {
+                // errorText.hide(); 
+                //return true;  
+                gmail = false
+            } else {
+                //errorText.show(); // Show error text
+                //return false; // Email is invalid
+                gmail = true;
+            }
+        }
+    
+        $('#submit-btn').click(function(event) {
+            // if (!checkEmail($('#email'), 'error-text')) {
+            //     event.preventDefault();  // Stop form submission if email is invalid
+            // }
+            checkEmail($('#email'), 'error-text')
+        });
+    
+        $('#email').on('input', function() {
+            checkEmail($(this), 'error-text'); // Re-check on input change
+        });
+    
+    
+        $('#submit-btn3').click(function(event) {
+            // if (!checkEmail($('#email3'), 'error-text3')) {
+            //     event.preventDefault();  // Stop form submission if email is invalid
+            // }
+            checkEmail($('#email3'), 'error-text3')
+        });
+    
+        $('#email3').on('input', function() {
+            checkEmail($(this), 'error-text3'); // Re-check on input change
+        });
+    
+        $('#submit-btn4').click(function(event) {
+            // if (!checkEmail($('#email4'), 'error-text4')) {
+            //     event.preventDefault();  // Stop form submission if email is invalid
+            // }
+            checkEmail($('#email4'), 'error-text4')
+        });
+    
+        $('#email4').on('input', function() {
+            checkEmail($(this), 'error-text4'); // Re-check on input change
+        });
+    
+        $('#submit-btn5').click(function(event) {
+            // if (!checkEmail($('#email5'), 'error-text5')) {
+            //     event.preventDefault();  // Stop form submission if email is invalid
+            // }
+            checkEmail($('#email5'), 'error-text5')
+        });
+    
+        $('#email5').on('input', function() {
+            checkEmail($(this), 'error-text5'); // Re-check on input change
+        });
+    
+        $('#submit-btn6').click(function(event) {
+            // if (!checkEmail($('#email6'), 'error-text6')) {
+            //     event.preventDefault();  // Stop form submission if email is invalid
+            // }
+            checkEmail($('#email6'), 'error-text6')
+        });
+    
+        $('#email6').on('input', function() {
+            checkEmail($(this), 'error-text6'); // Re-check on input change
+        });
+    
+        $('#submit-btn7').click(function(event) {
+            // if (!checkEmail($('#email7'), 'error-text7')) {
+            //     event.preventDefault();  // Stop form submission if email is invalid
+            // }
+            checkEmail($('#email7'), 'error-text7')
+        });
+    
+        $('#email7').on('input', function() {
+            checkEmail($(this), 'error-text7'); // Re-check on input change
+        });
+    
+        $('#submit-btn8').click(function(event) {
+            // if (!checkEmail($('#email8'), 'error-text8')) {
+            //     event.preventDefault();  // Stop form submission if email is invalid
+            // }
+            checkEmail($('#email8'), 'error-text8')
+        });
+    
+        $('#email8').on('input', function() {
+            checkEmail($(this), 'error-text8'); // Re-check on input change
+        });
+    
+        $('#submit-btn9').click(function(event) {
+            // if (!checkEmail($('#email9'), 'error-text9')) {
+            //     event.preventDefault();  // Stop form submission if email is invalid
+            // }
+            checkEmail($('#email9'), 'error-text9')
+        });
+    
+        $('#email9').on('input', function() {
+            checkEmail($(this), 'error-text9'); // Re-check on input change
+        });
+    });
+    
+    </script>
+    
+    <script>
+        $(document).ready(function() {
+        let state1 = { clickCount: 0, animationDone: false };
+        let state2 = { clickCount: 0, animationDone: false };
+        let state3 = { clickCount: 0, animationDone: false };
+        let state4 = { clickCount: 0, animationDone: false };
+        let state5 = { clickCount: 0, animationDone: false };
+        let state6 = { clickCount: 0, animationDone: false };
+        let state7 = { clickCount: 0, animationDone: false };
+        let state8 = { clickCount: 0, animationDone: false };
+    
+        function animateEmailField(btn, emailField, errorText, state) {
+            if (state.clickCount === 0 && !state.animationDone) {
+                // First click: hide error, show and animate form
+                errorText.hide();
+                emailField.css('display', 'block');
+    
+                setTimeout(() => {
+                    emailField.css({ 'opacity': '1', 'transform': 'translateY(0)' });
+                }, 50);
+    
+                if (window.innerWidth <= 768) {
+                    btn.addClass('move-down');
                 } else {
-                    errorText.show(); // Show error text
-                    return false; // Email is invalid
+                    btn.addClass('move-right');
                 }
+    
+                state.animationDone = true;
             }
-
-            $('#submit-btn').click(function (event) {
-                if (!checkEmail($('#email'), 'error-text')) {
-                    event.preventDefault();  // Stop form submission if email is invalid
-                }
-            });
-
-            $('#email').on('input', function () {
-                checkEmail($(this), 'error-text'); // Re-check on input change
-            });
-
-
-            $('#submit-btn3').click(function (event) {
-                if (!checkEmail($('#email3'), 'error-text3')) {
-                    event.preventDefault();  // Stop form submission if email is invalid
-                }
-            });
-
-            $('#email3').on('input', function () {
-                checkEmail($(this), 'error-text3'); // Re-check on input change
-            });
-
-            $('#submit-btn4').click(function (event) {
-                if (!checkEmail($('#email4'), 'error-text4')) {
-                    event.preventDefault();  // Stop form submission if email is invalid
-                }
-            });
-
-            $('#email4').on('input', function () {
-                checkEmail($(this), 'error-text4'); // Re-check on input change
-            });
-
-            $('#submit-btn5').click(function (event) {
-                if (!checkEmail($('#email5'), 'error-text5')) {
-                    event.preventDefault();  // Stop form submission if email is invalid
-                }
-            });
-
-            $('#email5').on('input', function () {
-                checkEmail($(this), 'error-text5'); // Re-check on input change
-            });
-
-            $('#submit-btn6').click(function (event) {
-                if (!checkEmail($('#email6'), 'error-text6')) {
-                    event.preventDefault();  // Stop form submission if email is invalid
-                }
-            });
-
-            $('#email6').on('input', function () {
-                checkEmail($(this), 'error-text6'); // Re-check on input change
-            });
-
-            $('#submit-btn7').click(function (event) {
-                if (!checkEmail($('#email7'), 'error-text7')) {
-                    event.preventDefault();  // Stop form submission if email is invalid
-                }
-            });
-
-            $('#email7').on('input', function () {
-                checkEmail($(this), 'error-text7'); // Re-check on input change
-            });
-
-            $('#submit-btn8').click(function (event) {
-                if (!checkEmail($('#email8'), 'error-text8')) {
-                    event.preventDefault();  // Stop form submission if email is invalid
-                }
-            });
-
-            $('#email8').on('input', function () {
-                checkEmail($(this), 'error-text8'); // Re-check on input change
-            });
-
-            $('#submit-btn9').click(function (event) {
-                if (!checkEmail($('#email9'), 'error-text9')) {
-                    event.preventDefault();  // Stop form submission if email is invalid
-                }
-            });
-
-            $('#email9').on('input', function () {
-                checkEmail($(this), 'error-text9'); // Re-check on input change
-            });
+    
+            state.clickCount++;
+        }
+    
+        $('#submit-btn').click(function() {
+            animateEmailField($(this), $('#email'), $('#error-text'), state1);
         });
-
-    </script>
-
-    <script>
-        $(document).ready(function () {
-            let state1 = { clickCount: 0, animationDone: false };
-            let state2 = { clickCount: 0, animationDone: false };
-            let state3 = { clickCount: 0, animationDone: false };
-            let state4 = { clickCount: 0, animationDone: false };
-            let state5 = { clickCount: 0, animationDone: false };
-            let state6 = { clickCount: 0, animationDone: false };
-            let state7 = { clickCount: 0, animationDone: false };
-            let state8 = { clickCount: 0, animationDone: false };
-
-            function animateEmailField(btn, emailField, errorText, state) {
-                if (state.clickCount === 0 && !state.animationDone) {
-                    // First click: hide error, show and animate form
-                    errorText.hide();
-                    emailField.css('display', 'block');
-
-                    setTimeout(() => {
-                        emailField.css({ 'opacity': '1', 'transform': 'translateY(0)' });
-                    }, 50);
-
-                    if (window.innerWidth <= 768) {
-                        btn.addClass('move-down');
-                    } else {
-                        btn.addClass('move-right');
-                    }
-
-                    state.animationDone = true;
-                }
-
-                state.clickCount++;
-            }
-
-            $('#submit-btn').click(function () {
-                animateEmailField($(this), $('#email'), $('#error-text'), state1);
-            });
-            $('#submit-btn3').click(function () {
-                animateEmailField($(this), $('#email3'), $('#error-text3'), state2);
-            });
-            $('#submit-btn4').click(function () {
-                animateEmailField($(this), $('#email4'), $('#error-text4'), state3);
-            });
-            $('#submit-btn5').click(function () {
-                animateEmailField($(this), $('#email5'), $('#error-text5'), state4);
-            });
-            $('#submit-btn6').click(function () {
-                animateEmailField($(this), $('#email6'), $('#error-text6'), state5);
-            });
-            $('#submit-btn7').click(function () {
-                animateEmailField($(this), $('#email7'), $('#error-text7'), state6);
-            });
-            $('#submit-btn8').click(function () {
-                animateEmailField($(this), $('#email8'), $('#error-text8'), state7);
-            });
-            $('#submit-btn9').click(function () {
-                animateEmailField($(this), $('#email9'), $('#error-text9'), state8);
-            });
+        $('#submit-btn3').click(function() {
+            animateEmailField($(this), $('#email3'), $('#error-text3'), state2);
         });
+        $('#submit-btn4').click(function() {
+            animateEmailField($(this), $('#email4'), $('#error-text4'), state3);
+        });
+        $('#submit-btn5').click(function() {
+            animateEmailField($(this), $('#email5'), $('#error-text5'), state4);
+        });
+        $('#submit-btn6').click(function() {
+            animateEmailField($(this), $('#email6'), $('#error-text6'), state5);
+        });
+        $('#submit-btn7').click(function() {
+            animateEmailField($(this), $('#email7'), $('#error-text7'), state6);
+        });
+        $('#submit-btn8').click(function() {
+            animateEmailField($(this), $('#email8'), $('#error-text8'), state7);
+        });
+        $('#submit-btn9').click(function() {
+            animateEmailField($(this), $('#email9'), $('#error-text9'), state8);
+        });
+    });
     </script>
-
-
-
+    
+    
+    
     <script>
-        function sendToHubSpot(data) {
-            return fetch("https://api.hsforms.com/submissions/v3/integration/submit/44821820/ff0ad92b-9d75-4ab0-948d-86af7253e369", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ fields: data.fields, context: data.context })
-            })
-                .then(response => response.ok)
-                .catch(error => console.error("Error sending data to HubSpot:", error));
-        }
-
-        function getUTMParams() {
-            const urlParams = new URLSearchParams(window.location.search);
-            let utmData = {};
-            for (let [key, value] of urlParams.entries()) {
-                if (key.startsWith("utm_")) {
-                    utmData[key] = value;
-                }
+      function sendToHubSpot(data) {
+        return fetch("https://api.hsforms.com/submissions/v3/integration/submit/44821820/ff0ad92b-9d75-4ab0-948d-86af7253e369", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ fields: data.fields, context: data.context })
+        })
+        .then(response => response.ok)
+        .catch(error => console.error("Error sending data to HubSpot:", error));
+      }
+      
+      function getUTMParams() { 
+        const urlParams = new URLSearchParams(window.location.search); 
+        let utmData = {}; 
+        for (let [key, value] of urlParams.entries()) { 
+          if (key.startsWith("utm_")) { 
+          utmData[key] = value; 
+          } 
+        } 
+        return utmData; 
+      }
+      
+      const utmParams = getUTMParams();
+    
+      function handleFormSubmission(formId) {
+      const form = document.querySelector(`#${formId}`);
+      if (!form) return;
+    
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+    
+        Object.entries(utmParams).forEach(([key, value]) => {
+          let utmField = form.querySelector(`input[name='${key}']`);
+          if (!utmField) {
+            utmField = document.createElement("input");
+            utmField.type = "hidden";
+            utmField.name = key;
+            form.appendChild(utmField);
+          }
+          utmField.value = value;
+        });
+    
+        const formData = new FormData(form);
+        const fields = [];
+        formData.forEach((value, key) => {
+          fields.push({ objectTypeId: "0-1", name: key, value: value });
+        });
+    
+        const context = {
+          hutk: document.cookie.split('; ').find(row => row.startsWith('hubspotutk='))?.split('=')[1] || "",
+          pageUri: window.location.href,
+          pageName: document.title,
+        };
+    
+        sendToHubSpot({ fields, context }).then(success => {
+          const thankYouMessage = form.closest("div").querySelector(".thankYou");
+          if (success) {
+            thankYouMessage.innerHTML = "Thank you! Your details have been submitted.";
+            thankYouMessage.style.color = "#785dfb";
+            form.style.display = "none";
+            if(!gmail){
+                document.querySelector("#divpopup").style.display = "flex";
             }
-            return utmData;
-        }
-
-        const utmParams = getUTMParams();
-
-        function handleFormSubmission(formId) {
-            const form = document.querySelector(`#${formId}`);
-            if (!form) return;
-
-            form.addEventListener("submit", function (e) {
-                e.preventDefault();
-
-                Object.entries(utmParams).forEach(([key, value]) => {
-                    let utmField = form.querySelector(`input[name='${key}']`);
-                    if (!utmField) {
-                        utmField = document.createElement("input");
-                        utmField.type = "hidden";
-                        utmField.name = key;
-                        form.appendChild(utmField);
-                    }
-                    utmField.value = value;
-                });
-
-                const formData = new FormData(form);
-                const fields = [];
-                formData.forEach((value, key) => {
-                    fields.push({ objectTypeId: "0-1", name: key, value: value });
-                });
-
-                const context = {
-                    hutk: document.cookie.split('; ').find(row => row.startsWith('hubspotutk='))?.split('=')[1] || "",
-                    pageUri: window.location.href,
-                    pageName: document.title,
-                };
-
-                sendToHubSpot({ fields, context }).then(success => {
-                    const thankYouMessage = form.closest("div").querySelector(".thankYou");
-                    if (success) {
-                        thankYouMessage.innerHTML = "Thank you! Your details have been submitted.";
-                        thankYouMessage.style.color = "#785dfb";
-                        form.style.display = "none";
-                        document.querySelector("#divpopup").style.display = "flex";
-                    }
-                    thankYouMessage.style.display = "block";
-                });
-            });
-        }
-
-        // Example usage
-        handleFormSubmission("email-form-2");
-        handleFormSubmission("email-form-3");
-        handleFormSubmission("email-form-4");
-        handleFormSubmission("email-form-5");
-        handleFormSubmission("email-form-6");
-        handleFormSubmission("email-form-7");
-        handleFormSubmission("email-form-8");
-        handleFormSubmission("email-form-9");
-
+          }
+          thankYouMessage.style.display = "block";
+        });
+      });
+    }
+    
+    // Example usage
+    handleFormSubmission("email-form-2");
+    handleFormSubmission("email-form-3");
+    handleFormSubmission("email-form-4");
+    handleFormSubmission("email-form-5");
+    handleFormSubmission("email-form-6");
+    handleFormSubmission("email-form-7");
+    handleFormSubmission("email-form-8");
+    handleFormSubmission("email-form-9");
+    
     </script>
 
 
