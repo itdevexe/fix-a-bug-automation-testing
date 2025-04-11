@@ -174,38 +174,85 @@ tabss.forEach((t, n) => {
         showTab((currentIndexx = currentIndexx === tabss.length - 1 ? 0 : currentIndexx + 1));
     }),
     (() => {
-        let t,
-            n = document.querySelector(".slider-container23"),
-            l = n.querySelector(".testimonial-slider"),
-            r = n.querySelectorAll(".testimonial"),
-            s = r.length,
-            a = 0,
-            c = (r[0].clientWidth, r[0].cloneNode(!0)),
-            o = r[s - 1].cloneNode(!0);
-        l.appendChild(c), l.insertBefore(o, r[0]), (l.style.transform = "translateX(calc(-100% + 36px)");
-        let i = document.querySelector(".slider-dot-container");
-        for (let d = 0; d < s; d++) {
-            let u = document.createElement("div");
-            u.classList.add("dot"), 0 === d && u.classList.add("active"), u.addEventListener("click", () => g(d)), i.appendChild(u);
+        let interval;
+        const container = document.querySelector(".slider-container23");
+        const slider = container.querySelector(".testimonial-slider");
+        const slides = container.querySelectorAll(".testimonial");
+        const totalSlides = slides.length;
+        let currentIndex = 0;
+        // Clone first and last slides for seamless looping
+        const firstClone = slides[0].cloneNode(true);
+        const lastClone = slides[totalSlides - 1].cloneNode(true);
+        slider.appendChild(firstClone);
+        slider.insertBefore(lastClone, slides[0]);
+        // Initial position
+        if (window.innerWidth > 768) {
+            slider.style.transform = `translateX(calc(-100% + 18px))`;
         }
-        let y = (t) => {
-                let l = Array.from(n.querySelectorAll(".dot"));
-                l.forEach((t) => t.classList.remove("active")), l[t].classList.add("active");
-            },
-            g = (t) => {
-                (a = t), (l.style.transition = "transform 1.5s ease-in-out"), (l.style.transform = `translateX(calc( ${-100 * (a + 1)}% + ${36 * (a + 1)}px`), y(t);
-            },
-            h = 0,
-            v = 0;
-        n.addEventListener("touchstart", function (t) {
-            h = t.touches[0].clientX;
-        }),
-            n.addEventListener("touchend", function (n) {
-                (v = n.changedTouches[0].clientX), clearInterval(t), v < h - 50 ? (console.log("Swiped Left", a), a < r.length - 1 && g(a + 1)) : v > h + 50 && (console.log("Swiped Right", a), a > 0 && g(a - 1));
-            }),
-            (t = setInterval(() => {
-                g((a = (a + 1) % s));
-            }, 5e3));
+        else {
+            slider.style.transform = `translateX(calc(-100% + 36px))`;
+        }
+        // Create navigation dots
+        const dotContainer = document.querySelector(".slider-dot-container");
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement("div");
+            dot.classList.add("dot");
+            if (i === 0) dot.classList.add("active");
+            dot.addEventListener("click", () => goToSlide(i));
+            dotContainer.appendChild(dot);
+        }
+        const updateDots = (index) => {
+            const dots = container.querySelectorAll(".dot");
+            dots.forEach(dot => dot.classList.remove("active"));
+            dots[index].classList.add("active");
+        };
+        const goToSlide = (index) => {
+            currentIndex = index;
+            if(window.innerWidth < 768) {
+                slider.style.transition = "transform .5s ease-in-out";
+                slider.style.transform = `translateX(calc(${-(100 * (currentIndex + 1))}% + ${36 * (currentIndex + 1)}px))`;
+            }
+            else{
+                slider.style.transition = "transform 1.5s ease-in-out";
+                slider.style.transform = `translateX(calc(${-(100 * (currentIndex + 1))}% - ${4 * (currentIndex)}px))`;
+            }
+            updateDots(currentIndex);
+        };
+        const startAutoSlide = () => {
+            if (!interval) {
+                interval = setInterval(() => {
+                    const nextIndex = (currentIndex + 1) % totalSlides;
+                    goToSlide(nextIndex);
+                }, 5000); // Slide every 5 seconds
+            }
+        };
+        const stopAutoSlide = () => {
+            if (interval) {
+                clearInterval(interval); // Stop the interval
+                interval = null;
+            }
+        };
+        // Touch swipe support
+        let startX = 0;
+        let endX = 0;
+        container.addEventListener("touchstart", (e) => {
+            startX = e.touches[0].clientX;
+            stopAutoSlide();  // Stop sliding when touch starts
+        });
+        container.addEventListener("touchend", (e) => {
+            endX = e.changedTouches[0].clientX;
+            if (endX < startX - 50 && currentIndex < totalSlides - 1) {
+                goToSlide(currentIndex + 1); // Swipe left
+            } else if (endX > startX + 50 && currentIndex > 0) {
+                goToSlide(currentIndex - 1); // Swipe right
+            }
+            startAutoSlide();  // Restart auto-slide when touch ends
+        });
+        // Pause on hover (mouseenter and mouseleave)
+        container.addEventListener("mouseenter", stopAutoSlide);
+        container.addEventListener("mouseleave", startAutoSlide);
+        // Start autoplay initially
+        startAutoSlide();
     })();
 const testing_accordion = document.getElementById("testing-accordion"),
     show_accordion_btn = document.getElementById("show-more-accordion");
